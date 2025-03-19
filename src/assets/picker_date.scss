@@ -1,5 +1,5 @@
 .dp__theme_dark {
-  --dp-background-color: #1f1f1f;;
+  --dp-background-color: var(--bg-main);;
   --dp-text-color: #fff;
   --dp-hover-color: var(--gray20);
   --dp-hover-text-color: #fff;
@@ -8,11 +8,11 @@
   --dp-primary-disabled-color: #196dd8;
   --dp-primary-text-color: #fff;
   --dp-secondary-color: #444444;
-  --dp-border-color: #1f1f1f;
-  --dp-menu-border-color: #1f1f1f;
-  --dp-border-color-hover: #1f1f1f;
-  --dp-border-color-focus: #1f1f1f;
-  --dp-disabled-color: #1f1f1f;
+  --dp-border-color: var(--bg-main);
+  --dp-menu-border-color: var(--bg-main);
+  --dp-border-color-hover: var(--bg-main);
+  --dp-border-color-focus: var(--bg-main);
+  --dp-disabled-color: var(--bg-main);
   --dp-disabled-color-text: var(--gray30);
   --dp-scroll-bar-background: #212121;
   --dp-scroll-bar-color: var(--gray30);
@@ -26,8 +26,45 @@
   --dp-range-between-dates-background-color: var(--gray20);
   --dp-range-between-dates-text-color: var(--dp-hover-text-color, #fff);
   --dp-range-between-border-color: var(--dp-hover-color, #fff);
+
+  /*General*/
+  --dp-font-family: -apple-system, blinkmacsystemfont, "Segoe UI", roboto, oxygen, ubuntu, cantarell, "Open Sans",
+  "Helvetica Neue", sans-serif;
+  --dp-border-radius: 8px; /*Configurable border-radius*/
+  --dp-cell-border-radius: 8px; /*Specific border radius for the calendar cell*/
+  --dp-common-transition: all 0.1s ease-in; /*Generic transition applied on buttons and calendar cells*/
+
+  /*Sizing*/
+  --dp-button-height: 46px; /*Size for buttons in overlays*/
+  --dp-month-year-row-height: 34px; /*Height of the month-year select row*/
+  --dp-month-year-row-button-size: 35px; /*Specific height for the next/previous buttons*/
+  --dp-button-icon-height: 20px; /*Icon sizing in buttons*/
+  --dp-cell-size: 35px; /*Width and height of calendar cell*/
+  --dp-cell-padding: 5px; /*Padding in the cell*/
+  --dp-common-padding: 10px; /*Common padding used*/
+  --dp-input-icon-padding: 35px; /*Padding on the left side of the input if icon is present*/
+  --dp-input-padding: 10px 30px 10px 12px; /*Padding in the input*/
+  --dp-menu-min-width: 260px; /*Adjust the min width of the menu*/
+  --dp-action-buttons-padding: 2px 5px; /*Adjust padding for the action buttons in action row*/
+  --dp-row-margin:  5px 0; /*Adjust the spacing between rows in the calendar*/
+  --dp-calendar-header-cell-padding:  0.5rem; /*Adjust padding in calendar header cells*/
+  --dp-two-calendars-spacing:  10px; /*Space between multiple calendars*/
+  --dp-overlay-col-padding:  3px; /*Padding in the overlay column*/
+  --dp-time-inc-dec-button-size:  32px; /*Sizing for arrow buttons in the time picker*/
+  --dp-menu-padding: 6px 8px; /*Menu padding*/
+
+  /*Font sizes*/
+  --dp-font-size: 1rem; /*Default font-size*/
+  --dp-preview-font-size: 0.8rem; /*Font size of the date preview in the action row*/
+  --dp-time-font-size: 0.8rem; /*Font size in the time picker*/
+
+  /*Transitions*/
+  --dp-animation-duration: 0.1s; /*Transition duration*/
+  --dp-menu-appear-transition-timing: cubic-bezier(.4, 0, 1, 1); /*Timing on menu appear animation*/
+  --dp-transition-timing: ease-out; /*Timing on slide animations*/
 }
 
 .date-picker-limiter {
   width: 261px;
 }
+

@@ -42,7 +42,7 @@ li {
   @include flex-column;
   @include flex-centered;
   width: 100%;
-  gap: 6px;
+  gap: 10px;
   height: min-content;
   margin: 12px auto 26px;
 }
@@ -53,7 +53,7 @@ li {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #1f1f1f;
+  background: var(--bg-main);
   overflow: hidden;
   height: 100vh;
 }

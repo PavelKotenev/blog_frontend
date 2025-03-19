@@ -1,5 +1,11 @@
 @use "mixins" as *;
 
+.s-and-contacts {
+  @include flex-row();
+  height: 48px;
+  width: 100%;
+}
+
 .s-input-box {
   @include flex-row;
   align-items: center;
@@ -8,12 +14,11 @@
   border: 2px solid var(--gray30);
   border-radius: var(--rounding-pill);
   font-weight: 600;
-  height: 48px;
+  height: 100%;
   width: 100%;
-  max-width: 100%;
-  min-width: 380px;
   color: rgba(235, 235, 245, .6);
   position: relative;
+  margin-right: 10px;
 
   &:hover {
     cursor: text;
@@ -33,6 +38,14 @@
 }
 
 .s-input-btn {
+  @include flex-column;
+  @include flex-centered;
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+}
+
+.s-input-btn-contacts {
   @include flex-column;
   @include flex-centered;
   width: 48px;
@@ -67,10 +80,10 @@
   position: absolute;
   top: 100%;
   left: 50%;
-  margin-top: 46px;
+  margin-top: 52px;
   width: 100%;
   transform: translateX(-50%);
-  background: #1f1f1f;
+  background: var(--bg-main);
   border: 2px solid var(--gray30);
   border-radius: var(--rounding-300);
   z-index: 1000;

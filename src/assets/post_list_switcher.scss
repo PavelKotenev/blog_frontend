@@ -28,13 +28,13 @@
   }
   &.router-link-active {
     background: white;
-    color: #1f1f1f;
+    color: var(--bg-main);
     border-color: black;
   }
 
   &.disabled {
     background: rgb(51, 51, 51, 9);
-    color: #1f1f1f;
+    color: var(--bg-main);
     cursor: not-allowed;
     pointer-events: none;
     opacity: 0.3;
