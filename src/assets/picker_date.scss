@@ -1,0 +1,33 @@
+.dp__theme_dark {
+  --dp-background-color: #1f1f1f;;
+  --dp-text-color: #fff;
+  --dp-hover-color: var(--gray20);
+  --dp-hover-text-color: #fff;
+  --dp-hover-icon-color: #959595;
+  --dp-primary-color: #196dd8;
+  --dp-primary-disabled-color: #196dd8;
+  --dp-primary-text-color: #fff;
+  --dp-secondary-color: #444444;
+  --dp-border-color: #1f1f1f;
+  --dp-menu-border-color: #1f1f1f;
+  --dp-border-color-hover: #1f1f1f;
+  --dp-border-color-focus: #1f1f1f;
+  --dp-disabled-color: #1f1f1f;
+  --dp-disabled-color-text: var(--gray30);
+  --dp-scroll-bar-background: #212121;
+  --dp-scroll-bar-color: var(--gray30);
+  --dp-success-color: #00701a;
+  --dp-success-color-disabled: #428f59;
+  --dp-icon-color: #959595;
+  --dp-danger-color: #e53935;
+  --dp-marker-color: #e53935;
+  --dp-tooltip-color: var(--gray20);
+  --dp-highlight-color: var(--gray20);
+  --dp-range-between-dates-background-color: var(--gray20);
+  --dp-range-between-dates-text-color: var(--dp-hover-text-color, #fff);
+  --dp-range-between-border-color: var(--dp-hover-color, #fff);
+}
+
+.date-picker-limiter {
+  width: 261px;
+}

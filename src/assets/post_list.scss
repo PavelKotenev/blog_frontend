@@ -1,0 +1,18 @@
+@use "mixins" as *;
+
+.p-list-box {
+  @include flex-column();
+  scroll-behavior: smooth;
+  gap: 20px;
+  padding-bottom: 1rem;
+  width: 100%;
+  flex: 1;
+  overflow: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.p-list-box > *:last-child {
+  margin-bottom: 1rem;
+}

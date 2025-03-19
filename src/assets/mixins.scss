@@ -1,0 +1,28 @@
+@mixin ui-border($where: border, $border-width: 1px, $type: solid) {
+  #{$where}: black $type $border-width;
+}
+
+@mixin table-border($where: border, $border-width: 1px, $type: solid) {
+  #{$where}: black $type $border-width;
+}
+
+@mixin standard-btn {
+  color: white;
+  border: none;
+  width: fit-content;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+@mixin flex-centered {
+  justify-content: center;
+  align-items: center;
+}
