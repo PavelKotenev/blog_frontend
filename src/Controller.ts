@@ -17,7 +17,7 @@ class Controller {
         }
     }
 
-    public async getAllCategoriesPosts(request: CountPostsByCategoriesRequest): Promise<CountPostsByCategoriesResponse> {
+    public async countPostsByCategories(request: CountPostsByCategoriesRequest): Promise<CountPostsByCategoriesResponse> {
         try {
             const response = await axiosService
                 .post<CountPostsByCategoriesResponse>("count", request);
@@ -27,7 +27,7 @@ class Controller {
         }
     }
 
-    public async getTagsPickerTags(request: TagPickerRequest): Promise<TagPickerResponse> {
+    public async getTagsForPicker(request: TagPickerRequest): Promise<TagPickerResponse> {
         try {
             const response = await axiosService
                 .post<TagPickerResponse>("picker/tags", request);

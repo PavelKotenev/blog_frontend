@@ -5,7 +5,7 @@
            v-if="datePickerStore.fromCreatedAt"
            @click="datePickerStore.dumpFromCreatedAt()"
       >
-         FROM {{ datePickerStore.formatEpochMs(datePickerStore.fromCreatedAt) }}
+        FROM {{ datePickerStore.formatEpochMs(datePickerStore.fromCreatedAt) }}
       </div>
       <div class="condition-item"
            v-if="datePickerStore.toCreatedAt"

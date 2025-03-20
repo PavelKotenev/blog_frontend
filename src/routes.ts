@@ -27,6 +27,10 @@ const clientRoutes: Array<RouteRecordRaw> = [
         path: "/posts/by_ids",
         component: PostsByCategory,
         props: { category: SearchCategories.Id }
+    },
+    {
+        path: "/:pathMatch(.*)*",
+        redirect: "/posts/all"
     }
 ];
 

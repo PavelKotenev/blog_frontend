@@ -24,6 +24,6 @@ import { onMounted } from "vue";
 const tagsPickerStore = useTagPickerStore();
 
 onMounted(async () => {
-  await tagsPickerStore.getTagsPickerTags();
+  await tagsPickerStore.getTagsForPicker();
 });
 </script>

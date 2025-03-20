@@ -3,7 +3,6 @@ import {computed, ref} from "vue";
 import {PickerTag} from "@/modules/picker_tag/TagPickerResponse";
 import ClientController from "@/Controller";
 import {TagPickerRequest} from "@/modules/picker_tag/TagPickerRequest";
-import {useCommonCategoriesStore} from "@/modules/post_list_switcher/commonCategoriesStore";
 import {usePostsByCategoryStore} from "@/modules/posts_by_category/postsByCategoryStore";
 
 export const useTagPickerStore = defineStore("tag_picker_store", () => {
@@ -13,7 +12,6 @@ export const useTagPickerStore = defineStore("tag_picker_store", () => {
     const suggestedTags = ref<PickerTag[]>([]);
     const selectedTags = ref<PickerTag[]>([]);
     const selectedTagsIds = ref<number[]>([])
-    const commonCategoriesStore = useCommonCategoriesStore();
     const postsByCategoryStore = usePostsByCategoryStore();
 
     const suggestedTagsToShow = computed(() => {
@@ -24,7 +22,7 @@ export const useTagPickerStore = defineStore("tag_picker_store", () => {
         return selectedTags.value;
     });
 
-    const getTagsPickerTags = async () => {
+    const getTagsForPicker = async () => {
         try {
             const request = new TagPickerRequest(
                 searchTerm.value,
@@ -33,7 +31,7 @@ export const useTagPickerStore = defineStore("tag_picker_store", () => {
                 lastTagPopularity.value
             );
 
-            const response = await ClientController.getTagsPickerTags(request);
+            const response = await ClientController.getTagsForPicker(request);
             selectedTags.value = response.selectedTags;
 
             if (response.suggestedTagsBatch?.length > 0) {
@@ -55,7 +53,7 @@ export const useTagPickerStore = defineStore("tag_picker_store", () => {
         }
         selectedTagsIds.value = selectedTagsIds.value.filter((tagId) => typeof tagId === 'number');
 
-        await getTagsPickerTags();
+        await getTagsForPicker();
         await postsByCategoryStore.actionAfterFiltration();
     };
 
@@ -68,7 +66,7 @@ export const useTagPickerStore = defineStore("tag_picker_store", () => {
         selectedTagsIds,
         suggestedTagsToShow,
         selectedTagsToShow,
-        getTagsPickerTags,
+        getTagsForPicker,
         toggleTag,
     };
 });

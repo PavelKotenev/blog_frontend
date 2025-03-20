@@ -20,7 +20,7 @@
         <div v-if="showTools" class="tools-dropdown">
           <div class="tools-section">
             <h3 class="tools-section-title">Tagpicker</h3>
-            <TagsPicker></TagsPicker>
+            <TagPicker></TagPicker>
           </div>
           <div class="tools-section">
             <h3 class="tools-section-title">Datepicker</h3>
@@ -30,7 +30,8 @@
         </div>
       </transition>
     </div>
-    <a class="s-input-btn-contacts" href="https://github.com/PavelKotenev/blog_backend" target="_blank" rel="noopener noreferrer">
+    <a class="s-input-btn-contacts" href="https://github.com/PavelKotenev/blog_backend" target="_blank"
+       rel="noopener noreferrer">
       <img class="s-svg-holder" src="/svg/github.svg" alt="GitHub">
     </a>
     <a class="s-input-btn-contacts" href="https://t.me/SamDev030" target="_blank" rel="noopener noreferrer">
@@ -39,43 +40,27 @@
   </div>
 </template>
 
-<script lang="ts">
-import {defineComponent, ref, watch} from "vue";
-import {useCommonCategoriesStore} from "@/modules/post_list_switcher/commonCategoriesStore";
+<script setup lang="ts">
+import {ref, watch} from "vue";
 import {useSearchConditionsStore} from "@/modules/search/searchConditionsStore";
 import DatePicker from "@/modules/picker_date/DatePicker.vue";
 import TagPicker from "@/modules/picker_tag/TagPicker.vue";
 import {debounce} from "lodash";
 import {usePostsByCategoryStore} from "@/modules/posts_by_category/postsByCategoryStore";
 
-export default defineComponent({
-  components: {
-    TagsPicker: TagPicker,
-    DatePicker
-  },
-  setup() {
-    const searchConditionsStore = useSearchConditionsStore();
-    const inputRef = ref<HTMLInputElement | null>(null);
-    const showTools = ref(false);
-    const commonCategoriesStore = useCommonCategoriesStore();
-    const postsByCategoryStore = usePostsByCategoryStore();
+const searchConditionsStore = useSearchConditionsStore();
+const inputRef = ref<HTMLInputElement | null>(null);
+const showTools = ref(false);
+const postsByCategoryStore = usePostsByCategoryStore();
 
-    const toggleTools = () => {
-      showTools.value = !showTools.value;
-    };
-    watch(
-        () => searchConditionsStore.searchTerm,
-        debounce(async () => {
-          await postsByCategoryStore.fetchPostsByActiveRoute();
-          await commonCategoriesStore.getPostsAccountByCategory();
-        }, 200)
-    );
-    return {
-      searchConditionsStore,
-      inputRef,
-      showTools,
-      toggleTools,
-    };
-  },
-});
+const toggleTools = () => {
+  showTools.value = !showTools.value;
+};
+
+watch(
+    () => searchConditionsStore.searchTerm,
+    debounce(async () => {
+      await postsByCategoryStore.actionAfterFiltration();
+    }, 200)
+);
 </script>
