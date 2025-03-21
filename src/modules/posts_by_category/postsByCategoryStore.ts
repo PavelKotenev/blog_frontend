@@ -91,7 +91,6 @@ export const usePostsByCategoryStore = defineStore("posts_by_category_store", ()
             const newPosts = response.postsByCategory;
             categoryData.posts.push(...newPosts);
             if (category == SearchCategories.Default) {
-                console.log(categoryData.posts);
             }
             defineLastPostParams(category);
         } catch (error) {
