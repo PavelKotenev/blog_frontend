@@ -21,7 +21,7 @@ RUN rm -rf ./*
 COPY --from=build /app/dist .
 
 # Копируем пользовательский конфиг Nginx, если он есть
-# COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Контейнер будет слушать HTTP-запросы
 EXPOSE 80
