@@ -21,16 +21,12 @@ export const useDatePickerStore = defineStore("date_picker_store", () => {
     const dumpToCreatedAt = async (): Promise<void> => {
         toCreatedAt.value = null;
     }
-    const handleDate = async (modelData: any): Promise<void> => {
-        if (modelData) {
-            const [start, end] = modelData;
-            const startEpoch = start ? start.getTime() : null;
-            const endEpoch = end ? end.getTime() : null;
-            if (startEpoch != endEpoch) {
-                fromCreatedAt.value = startEpoch;
-                toCreatedAt.value = endEpoch;
-            }
-        }
+    const toggleFromCreatedAt = async (data: any): Promise<void> => {
+        console.log(data)
+        fromCreatedAt.value = data;
+    };
+    const toggleToCreatedAt = async (data: any): Promise<void> => {
+        toCreatedAt.value = data;
     };
 
     const formatEpochMs = (epochMs: number): string => {
@@ -52,7 +48,8 @@ export const useDatePickerStore = defineStore("date_picker_store", () => {
         fromCreatedAt,
         toCreatedAt,
         formatEpochMs,
-        handleDate,
+        toggleFromCreatedAt,
+        toggleToCreatedAt,
         dumpFromCreatedAt,
         dumpToCreatedAt
     };

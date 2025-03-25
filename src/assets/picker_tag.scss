@@ -1,30 +1,22 @@
-.tags-picker-wrapper {
+.tp-tags-block {
   margin-top: 12px;
-  width: 348px;
-  height: min-content;
-  border-radius: var(--rounding-300);
-}
-
-.tags-picker {
-  display: grid;
-  height: 120px;
-}
-
-.tags-block {
+  width: 360px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-content: flex-start;
   gap: 8px;
-  margin: 0;
-  padding: 10px;
-  border-bottom: 1px solid #1f1f22;
+  padding: 0 24px;
+  height: 180px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+
   &::-webkit-scrollbar {
     display: none;
   }
 }
 
-.p-tag-item {
+.tp-tag-item {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -32,26 +24,24 @@
   height: 32px;
 }
 
-.p-tag-btn {
+.tp-tag-btn {
   border-radius: var(--rounding-200);
-  background: var(--gray20);
+  background: rgba(20, 20, 20, 1);
   color: rgba(235, 235, 245, .6);
   cursor: pointer;
   transition: background 0.2s ease;
   padding: 6px 12px;
+  font-weight: 300;
 }
 
-.p-tag-btn.selected {
-  background: rgba(29, 161, 242, 0.1);
-  color: #4D7CFF;
+.tp-tag-btn.selected {
+  font-weight: 500;
+  color: var(--bg-main);
+  background: white;
 }
 
-.p-tag-btn:hover {
-  color: white;
-  background: var(--gray30);
-}
-
-.p-tag-btn.selected:hover {
-  color: #4D7CFF;
-  background: rgba(29, 161, 242, 0.2);
+.tp-tag-btn:hover {
+  font-weight: 500;
+  color: var(--bg-main);
+  background: white;
 }

@@ -1,13 +1,24 @@
 @use "root";
 @use "post_list";
-@use "menu";
+@use "header";
 @use "fonts";
-@use "selected_filters";
 @use "post";
+@use "footer";
 @use "post_list_switcher";
+@use "s_tools_dropdown";
 @use "picker_date";
 @use "picker_tag";
 @use "mixins" as *;
+
+.client {
+  display: grid;
+  grid-template-rows: min-content 1fr min-content;
+  grid-template-columns: 1fr;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  background: var(--bg-main);
+}
 
 *,
 *::before,
@@ -28,35 +39,6 @@ li {
   list-style-type: none;
 }
 
-.client {
-  display: grid;
-  height: 100vh;
-  grid-template-rows: min-content 1fr;
-  grid-auto-columns: 1fr;
-  width: 600px;
-  margin-left: 8px;
-  margin-right: 8px;
-}
-
-.menu {
-  @include flex-column;
-  @include flex-centered;
-  width: 100%;
-  gap: 10px;
-  height: min-content;
-  margin: 12px auto 26px;
-}
-
-.body {
-  @include flex-column;
-  align-items: center;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background: var(--bg-main);
-  overflow: hidden;
-  height: 100vh;
-}
 
 button {
   all: unset;

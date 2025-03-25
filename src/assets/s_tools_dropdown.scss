@@ -1,0 +1,32 @@
+@use "mixins" as *;
+
+.h-dropdown {
+  @include flex-column;
+  justify-content: flex-start;
+  align-items: center;
+  transform: translateX(-50%);
+  background: var(--bg-main);
+  z-index: 1000;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  position: absolute;
+  padding-top: 18px;
+  top: 0;
+  width: 430px;
+  left: 50%;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+
+.tools-section-title {
+  @include flex-column;
+  @include flex-centered;
+  margin-top: 18px;
+  width: 100%;
+  color: rgba(235, 235, 245, .6);
+  font-size: 1.1rem;
+  padding: 0 16px;
+}

@@ -8,8 +8,7 @@ export class FormatedDate {
         const date = new Date(epochMs);
 
         this.day = String(date.getDate());
-        this.month = date.toLocaleString("en", { month: "short" });
-        this.month = this.month.charAt(0).toUpperCase() + this.month.slice(1);
+        this.month = date.toLocaleString("en", { month: "short" }).toUpperCase();
         this.year = String(date.getFullYear());
 
         const hours = String(date.getHours()).padStart(2, "0");

@@ -1,18 +1,28 @@
 @use "mixins" as *;
 
 .p-list-box {
-  @include flex-column();
+  display: grid;
+  align-items: start;
+  grid-template-columns: repeat(auto-fill, 430px);
+  grid-auto-rows: min-content;
+  justify-content: center;
+  gap: 16px;
+  width: 100vw;
   scroll-behavior: smooth;
-  gap: 20px;
-  padding-bottom: 1rem;
-  width: 100%;
-  flex: 1;
-  overflow: auto;
+  overflow: scroll;
+  padding: 16px 8px 0;
+
   &::-webkit-scrollbar {
     display: none;
   }
 }
+.anchor {
+  height: 1px;
+}
 
-.p-list-box > *:last-child {
-  margin-bottom: 1rem;
+.p-list-total {
+  @include flex-row();
+  align-items: center;
+  color: rgba(86, 86, 86, 1);
+  font-size: 14px;
 }

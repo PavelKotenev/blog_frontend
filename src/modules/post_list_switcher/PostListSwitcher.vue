@@ -3,13 +3,15 @@
     <router-link
         v-for="category in categories"
         :key="category.type"
-        :to="category.total === 0 && category.type !== SearchCategories.All ? '' : category.path"
+        :to="category.path"
         class="s-category-btn"
-        :class="{ 'disabled': category.total === 0 }"
+        :class="{
+          'disabled': postsByCategoriesStore.getCategoryData(category.type).total === 0,
+          'active': postsByCategoriesStore.currentCategory == category.type,
+        }"
         @click.native.prevent="handleClick(category)"
     >
-      <span class="s-category-btn-text">{{ category.label }}</span>
-      <span class="s-category-btn-id" v-if="category.total > 0">{{ category.total }}</span>
+      {{ category.name }}
     </router-link>
   </div>
 </template>
@@ -19,41 +21,36 @@ import {computed} from 'vue';
 import {useRouter} from 'vue-router';
 import {SearchCategories} from "@/modules/post_list_switcher/SearchCategories";
 import {usePostsByCategoryStore} from "@/modules/posts_by_category/postsByCategoryStore";
+import {RoutesList} from "@/RoutesList";
 
 const postsByCategoriesStore = usePostsByCategoryStore();
-
 const router = useRouter();
 
 const categories = computed(() => [
   {
     type: SearchCategories.Default,
-    label: "All",
-    total: postsByCategoriesStore.getCategoryData(SearchCategories.Default).total,
-    path: "/posts/all"
+    name: "All",
+    path: RoutesList.Default
   },
   {
     type: SearchCategories.Id,
-    label: "Ids",
-    total: postsByCategoriesStore.getCategoryData(SearchCategories.Id).total,
-    path: "/posts/by_ids"
+    name: "Id",
+    path: RoutesList.Id
   },
   {
     type: SearchCategories.Content,
-    label: "Contents",
-    total: postsByCategoriesStore.getCategoryData(SearchCategories.Content).total,
-    path: "/posts/by_contents"
+    name: "Content",
+    path: RoutesList.Content
   },
   {
     type: SearchCategories.Title,
-    label: "Titles",
-    total: postsByCategoriesStore.getCategoryData(SearchCategories.Title).total,
-    path: "/posts/by_titles"
+    name: "Title",
+    path: RoutesList.Title
   },
   {
     type: SearchCategories.Tag,
-    label: "Tags",
-    total: postsByCategoriesStore.getCategoryData(SearchCategories.Tag).total,
-    path: "/posts/by_tags"
+    name: "Tag",
+    path: RoutesList.Tag
   }
 ]);
 

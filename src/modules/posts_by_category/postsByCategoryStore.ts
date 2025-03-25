@@ -1,14 +1,15 @@
 import {defineStore} from "pinia";
-import {reactive} from "vue";
+import {reactive, ref, watch} from "vue";
 import {PostByCategory} from "@/modules/posts_by_category/PostsByCategoryResponse";
 import {SearchCategories} from "@/modules/post_list_switcher/SearchCategories";
 import {PostsByCategoryRequest} from "@/modules/posts_by_category/PostsByCategoryRequest";
-import {useSearchConditionsStore} from "@/modules/search/searchConditionsStore";
+import {useSearchConditionsStore} from "@/modules/header/searchConditionsStore";
 import {useTagPickerStore} from "@/modules/picker_tag/tagPickerStore";
 import {useDatePickerStore} from "@/modules/picker_date/datePickerStore";
 import ClientController from "@/Controller";
-import {useRoute} from "vue-router";
+import {useRouter} from "vue-router";
 import {useCommonCategoriesStore} from "@/modules/post_list_switcher/commonCategoriesStore";
+import {RoutesList} from "@/RoutesList";
 
 export type CategoryData = {
     posts: PostByCategory[];
@@ -38,38 +39,19 @@ export const usePostsByCategoryStore = defineStore("posts_by_category_store", ()
     const searchConditionsStore = useSearchConditionsStore();
     const tagPickerStore = useTagPickerStore();
     const datePickerStore = useDatePickerStore();
-    const route = useRoute();
+    const router = useRouter();
+    const currentCategory = ref<SearchCategories>(SearchCategories.Default);
 
     const getCategoryData = (category: SearchCategories): CategoryData => categories[category];
 
-    const getCurrentCategory = (): SearchCategories => {
-        switch (route.path) {
-            case "/posts/by_ids":
-                return SearchCategories.Id;
-            case "/posts/by_contents":
-                return SearchCategories.Content;
-            case "/posts/by_titles":
-                return SearchCategories.Title;
-            case "/posts/by_tags":
-                return SearchCategories.Tag;
-            case "/posts/all":
-            default:
-                return SearchCategories.Default;
-        }
-    };
-
-    const actionAfterFiltration = async () : Promise<void> => {
+    const actionAfterFiltration = async (): Promise<void> => {
         dumpDataAfterFiltration();
         await commonCategoriesStore.getPostsAccountByCategory()
-        await fetchPostsByCategory(SearchCategories.Default);
+        await fetchPostsByCategory();
     }
 
-    const fetchPostsByActiveRoute = async (): Promise<void> => {
-        const currentCategory = getCurrentCategory();
-        await fetchPostsByCategory(currentCategory);
-    };
-
-    const fetchPostsByCategory = async (category: SearchCategories) => {
+    const fetchPostsByCategory = async () => {
+        let category = currentCategory.value;
         const categoryData = getCategoryData(category);
 
         const request = new PostsByCategoryRequest(
@@ -108,6 +90,7 @@ export const usePostsByCategoryStore = defineStore("posts_by_category_store", ()
 
 
     };
+
     const defineLastPostParams = (category: SearchCategories) => {
         const categoryData = getCategoryData(category);
         const posts = categoryData.posts;
@@ -117,11 +100,46 @@ export const usePostsByCategoryStore = defineStore("posts_by_category_store", ()
         }
     };
 
+    watch(() => router.currentRoute.value.path, async (newPath) => {
+        let newCategory: SearchCategories;
+        switch (newPath) {
+            case RoutesList.Id:
+                newCategory = SearchCategories.Id;
+                break;
+            case RoutesList.Content:
+                newCategory = SearchCategories.Content;
+                break;
+            case RoutesList.Title:
+                newCategory = SearchCategories.Title;
+                break;
+            case RoutesList.Tag:
+                newCategory = SearchCategories.Tag;
+                break;
+            case RoutesList.Default:
+            default:
+                newCategory = SearchCategories.Default;
+                break;
+        }
+        if (newCategory !== currentCategory.value) {
+            currentCategory.value = newCategory;
+            const categoryData = categories[newCategory];
+            if (categoryData.posts.length === 0) {
+                await fetchPostsByCategory();
+            }
+        }
+    }, { immediate: true });
+
+    watch(() => categories[currentCategory.value].total, (newTotal) => {
+        if (newTotal === 0 && currentCategory.value !== SearchCategories.Default) {
+            router.push(RoutesList.Default);
+        }
+    });
+
     return {
         categories,
+        currentCategory,
         actionAfterFiltration,
         dumpDataAfterFiltration,
-        fetchPostsByActiveRoute,
         fetchPostsByCategory,
         getCategoryData,
     };

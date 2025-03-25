@@ -1,6 +1,6 @@
 import {defineStore} from "pinia";
 import ClientController from "@/Controller";
-import {useSearchConditionsStore} from "@/modules/search/searchConditionsStore";
+import {useSearchConditionsStore} from "@/modules/header/searchConditionsStore";
 import {useTagPickerStore} from "@/modules/picker_tag/tagPickerStore";
 import {CountPostsByCategoriesRequest} from "@/modules/post_list_switcher/CountPostsByCategoriesRequest";
 import {SearchCategories} from "@/modules/post_list_switcher/SearchCategories";

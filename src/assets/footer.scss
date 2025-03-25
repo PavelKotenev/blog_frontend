@@ -1,0 +1,32 @@
+@use "mixins" as *;
+
+.footer {
+  @include flex-row;
+  @include flex-centered;
+  width: 100%;
+  min-width: 430px;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.f-contacts-box {
+  @include flex-row;
+  @include flex-centered;
+  gap: 16px;
+  justify-content: flex-start;
+  width: min-content;
+}
+
+.f-btn-contact {
+  @include flex-row;
+  @include flex-centered;
+  height: 30px;
+  color: rgba(220, 220, 220, 1);
+  cursor: pointer;
+}
+
+.h-contacts-svg-holder {
+  width: 20px;
+  height: 20px;
+}

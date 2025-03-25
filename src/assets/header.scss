@@ -1,0 +1,69 @@
+@use "mixins" as *;
+
+.h-svg-holder {
+  width: 24px;
+  height: 24px;
+}
+
+.s-input-btn {
+  @include flex-column;
+  @include flex-centered;
+  overflow: hidden;
+  width: 38px;
+  height: 38px;
+  cursor: pointer;
+}
+
+.s-input-btns {
+  @include flex-row;
+  @include flex-centered;
+  gap: 4px;
+}
+.s-input-and-svgs {
+  @include flex-row;
+  color: rgba(120, 120, 120, 1);
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 16px;
+  padding-right: 4px;
+  height: 44px;
+  background-color: rgba(20, 20, 20, 1);
+  border-radius: var(--rounding-pill);
+  font-weight: 500;
+  flex: 1;
+  min-width: 400px;
+  outline: none;
+}
+
+.s-input {
+  &::placeholder {
+    font-weight: 600;
+    color: rgba(120, 120, 120, 1);
+    transition: opacity 0.5s ease;
+  }
+
+  &:focus {
+    caret-color: rgba(120, 120, 120, 1);
+  }
+}
+
+.header {
+  @include flex-column;
+  @include flex-centered;
+  min-width: 430px;
+  width: 100vw;
+  padding-top: 18px;
+  background: var(--bg-main);
+}
+
+.h-units {
+  @include flex-row;
+  height: min-content;
+  position: relative;
+  justify-content: center;
+  gap: 24px;
+  max-width: 430px;
+  margin-bottom: 12px;
+  padding: 0 8px;
+}
+

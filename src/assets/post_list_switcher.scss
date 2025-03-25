@@ -1,51 +1,29 @@
 @use "mixins" as *;
 
 .s-categories-btns-wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr;
-  gap: 12px;
-  width: 100%;
-  margin-left: 4px;
-  margin-right: 4px;
-  border-bottom-left-radius: var(--rounding-200);
-  border-bottom-right-radius: var(--rounding-200);
+  @include flex-row;
+  @include flex-centered;
+  gap: 16px;
+  width: 430px;
+  padding: 0 8px;
 }
 
 .s-category-btn {
-  @include flex-row;
+  color: rgba(220, 220, 220, 1);
+  @include flex-column;
   @include flex-centered;
-  font-weight: 300;
-  color: white;
-  gap: 4px;
-  background: rgb(41, 41, 41, 1);
-  padding: 12px;
-  height: 32px;
-  cursor: pointer;
   border-radius: var(--rounding-pill);
-  &:hover {
-    background: rgb(51, 51, 51, 1);
-  }
-  &.router-link-active {
-    background: white;
-    color: var(--bg-main);
-    border-color: black;
+  height: min-content;
+  cursor: pointer;
+  padding: 6px 16px;
+  font-weight: 500;
+  font-size: 0.9rem;
+
+  &.active {
+    background-color: rgba(16, 16, 16, 1);
   }
 
   &.disabled {
-    background: rgb(51, 51, 51, 9);
-    color: var(--bg-main);
-    cursor: not-allowed;
-    pointer-events: none;
-    opacity: 0.3;
+    color: rgba(86, 86, 86, 1);
   }
-}
-
-.s-category-btn-text {
-  font-size: 16px;
-}
-
-.s-category-btn-id {
-  font-size: 0.8rem;
-  font-weight: 600;
 }

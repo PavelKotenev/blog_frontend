@@ -26,3 +26,4 @@ await postsByCategoryStore.fetchPostsByCategory(SearchCategories.Default);
 
 
 app.mount("#app");
+

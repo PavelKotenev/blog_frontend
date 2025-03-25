@@ -2,7 +2,8 @@
   <div ref="scrollContainer" class="p-list-box">
     <Post v-for="post in categoryData.posts"
           :key="post.id"
-          :post="post"/>
+          :post="post"
+    />
     <div ref="anchor" class="anchor"></div>
   </div>
 </template>
@@ -30,14 +31,12 @@ const observer = ref<IntersectionObserver | null>(null);
 
 const onAnchorIntersect = (entries: IntersectionObserverEntry[]) => {
   const entry = entries[0];
-  if (entry.isIntersecting && categoryData.value.total > 0) {
-    postsByCategoryStore.fetchPostsByCategory(props.category);
+  if (entry.isIntersecting && categoryData.value.total >= 20) {
+    postsByCategoryStore.fetchPostsByCategory();
   }
 };
 
-onMounted(() => {
-  postsByCategoryStore.fetchPostsByCategory(props.category);
-
+onMounted(async () => {
   setTimeout(() => {
     if (anchor.value) {
       observer.value = new IntersectionObserver(onAnchorIntersect, {
@@ -50,13 +49,3 @@ onMounted(() => {
   }, 1000);
 });
 </script>
-
-<style scoped>
-.anchor {
-  height: 1px;
-}
-
-.p-list-box {
-  overflow-y: auto;
-}
-</style>
