@@ -9,22 +9,13 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, PropType, computed, type ComputedRef } from 'vue';
-import { usePostsByCategoryStore } from "@/modules/posts_by_category/postsByCategoryStore";
+import {computed, type ComputedRef, onMounted, ref} from 'vue';
+import {CategoryData, usePostsByCategoryStore} from "@/modules/posts_by_category/postsByCategoryStore";
 import Post from '@/modules/post/Post.vue';
-import { SearchCategories } from "@/modules/post_list_switcher/SearchCategories";
-import { CategoryData } from "@/modules/posts_by_category/postsByCategoryStore";
-
-const props = defineProps({
-  category: {
-    type: String as PropType<SearchCategories>,
-    required: true
-  }
-});
 
 const postsByCategoryStore = usePostsByCategoryStore();
 
-const categoryData = computed(() => postsByCategoryStore.getCategoryData(props.category)) as ComputedRef<CategoryData>;
+const categoryData = computed(() => postsByCategoryStore.getCategoryData(postsByCategoryStore.currentCategory)) as ComputedRef<CategoryData>;
 
 const anchor = ref<HTMLDivElement | null>(null);
 const observer = ref<IntersectionObserver | null>(null);

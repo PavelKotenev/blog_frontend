@@ -79,16 +79,16 @@ export const usePostsByCategoryStore = defineStore("posts_by_category_store", ()
             console.error("Error while posts fetch:", error);
         }
     };
+
+
     const dumpDataAfterFiltration = () => {
         Object.keys(categories).forEach((category) => {
-            const categoryData = categories[category as SearchCategories];
+            const categoryData = categories[parseInt(category) as SearchCategories];
             categoryData.lastPostId = null;
             categoryData.lastPostCreatedAt = null;
             categoryData.total = 0;
             categoryData.posts = [];
         });
-
-
     };
 
     const defineLastPostParams = (category: SearchCategories) => {

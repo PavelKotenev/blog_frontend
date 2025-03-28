@@ -10,7 +10,7 @@ class Controller {
     public async getPostsByCategory(request: PostsByCategoryRequest): Promise<PostsByCategoryResponse> {
         try {
             const response = await axiosService
-                .post<PostsByCategoryResponse>("category", request);
+                .post<PostsByCategoryResponse>("post/by_category", request);
             return response.data;
         } catch (error) {
             throw error;
@@ -20,7 +20,7 @@ class Controller {
     public async countPostsByCategories(request: CountPostsByCategoriesRequest): Promise<CountPostsByCategoriesResponse> {
         try {
             const response = await axiosService
-                .post<CountPostsByCategoriesResponse>("count", request);
+                .post<CountPostsByCategoriesResponse>("post/count", request);
             return response.data;
         } catch (error) {
             throw error;
@@ -30,7 +30,7 @@ class Controller {
     public async getTagsForPicker(request: TagPickerRequest): Promise<TagPickerResponse> {
         try {
             const response = await axiosService
-                .post<TagPickerResponse>("picker/tags", request);
+                .post<TagPickerResponse>("tags/refresh_picker", request);
             return response.data;
         } catch (error) {
             throw error;

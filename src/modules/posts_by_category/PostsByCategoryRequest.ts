@@ -1,5 +1,7 @@
+import {SearchCategories} from "@/modules/post_list_switcher/SearchCategories";
+
 export class PostsByCategoryRequest {
-    category: string;
+    category: SearchCategories;
     searchTerm: string | null;
     fromCreatedAt: number | null;
     toCreatedAt: number | null;
@@ -8,7 +10,7 @@ export class PostsByCategoryRequest {
     selectedTags: number[] | null;
 
     constructor(
-        string: string,
+        category: SearchCategories,
         searchTerm: string | null,
         fromCreatedAt: number | null,
         toCreatedAt: number | null,
@@ -16,7 +18,7 @@ export class PostsByCategoryRequest {
         lastPostCreatedAt: number | null,
         selectedTags: number[] | null,
     ) {
-        this.category = string;
+        this.category = category;
         this.searchTerm = searchTerm;
         this.fromCreatedAt = fromCreatedAt;
         this.toCreatedAt = toCreatedAt;

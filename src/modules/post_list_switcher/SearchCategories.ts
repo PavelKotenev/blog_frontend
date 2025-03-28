@@ -1,7 +1,7 @@
 export enum SearchCategories {
-    Default = 'default',
-    Id = 'id',
-    Title = 'title',
-    Content = 'content',
-    Tag = 'tags',
+    Default = 1,
+    Id = 2,
+    Title = 3,
+    Content = 4,
+    Tag = 5,
 }
