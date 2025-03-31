@@ -3,6 +3,24 @@
 .h-svg-holder {
   width: 24px;
   height: 24px;
+  cursor: pointer;
+}
+
+.h-filters-btn {
+  @include flex-column;
+  @include flex-centered;
+  background: #3e63dd;
+  padding: 0 12px;
+  width: 74px;
+  height: 100%;
+}
+
+.h-clear-all-btn {
+  background: rgba(64, 64, 64, 1);
+  color: white;
+  height: 36px;
+  padding: 0 8px;
+  border-radius: var(--rounding-200);
 }
 
 .s-input-btn {
@@ -19,32 +37,51 @@
   @include flex-centered;
   gap: 4px;
 }
+
+.h-contacts {
+  @include flex-row;
+  @include flex-centered;
+  gap: 12px;
+}
+
 .s-input-and-svgs {
   @include flex-row;
-  color: rgba(120, 120, 120, 1);
+  color: white;
   justify-content: space-between;
   align-items: center;
-  padding-left: 16px;
-  padding-right: 4px;
-  height: 44px;
-  background-color: rgba(20, 20, 20, 1);
-  border-radius: var(--rounding-pill);
+  padding-left: 12px;
+  border-radius: var(--rounding-300);
+  background: #32363f;
   font-weight: 500;
-  flex: 1;
-  min-width: 400px;
+  width: 100%;
+  height: 100%;
   outline: none;
+  overflow: hidden;
+  cursor: pointer;
 }
 
 .s-input {
+  height: 100%;
+  width: 100%;
+  margin-left: 12px;
+
   &::placeholder {
     font-weight: 600;
-    color: rgba(120, 120, 120, 1);
+    color: #dfdfd6;
     transition: opacity 0.5s ease;
   }
 
   &:focus {
-    caret-color: rgba(120, 120, 120, 1);
+    caret-color: #dfdfd6;
   }
+}
+
+.clear-filter-btn {
+  background: rgba(101, 117, 133, 1);
+  height: 36px;
+  padding: 0 8px;
+  color: rgba(22, 22, 24, 1);
+  border-radius: var(--rounding-pill);
 }
 
 .header {
@@ -52,18 +89,19 @@
   @include flex-centered;
   min-width: 430px;
   width: 100vw;
-  padding-top: 18px;
   background: var(--bg-main);
 }
 
 .h-units {
-  @include flex-row;
-  height: min-content;
+  display: grid;
+  height: 44px;
+  grid-template-columns: 1fr min-content;
+  grid-template-rows: 1fr;
   position: relative;
   justify-content: center;
   gap: 24px;
   max-width: 430px;
-  margin-bottom: 12px;
-  padding: 0 8px;
+  width: 100%;
+  padding: 0 12px;
 }
 

@@ -1,18 +1,25 @@
 <template>
-  <div class="s-categories-btns-wrapper">
-    <router-link
-        v-for="category in categories"
-        :key="category.type"
-        :to="category.path"
-        class="s-category-btn"
-        :class="{
+  <div class="category-switcher">
+    <h3 class="tools-section-title">Category</h3>
+    <div class="s-categories-btns-wrapper">
+      <router-link
+          v-for="category in categories"
+          :key="category.type"
+          :to="category.path"
+          class="s-category"
+          :class="{
           'disabled': postsByCategoriesStore.getCategoryData(category.type).total === 0,
           'active': postsByCategoriesStore.currentCategory == category.type,
         }"
-        @click.native.prevent="handleClick(category)"
-    >
-      {{ category.name }}
-    </router-link>
+          @click.native.prevent="router.push(category.path)"
+      >
+        <div class="category-title-total">
+          {{ category.name }}
+          <div class="total-by-category">{{ postsByCategoriesStore.getCategoryData(category.type).total }}</div>
+        </div>
+        <img class="category-select-svg-limiter" src="/svg/arrow_right.svg" alt="arrow_right">
+      </router-link>
+    </div>
   </div>
 </template>
 
@@ -53,10 +60,4 @@ const categories = computed(() => [
     path: RoutesList.Tag
   }
 ]);
-
-const handleClick = (category: { total: number; type: SearchCategories; path: string }) => {
-  if (category.total > 0) {
-    router.push(category.path);
-  }
-};
 </script>

@@ -1,20 +1,20 @@
 @use "mixins" as *;
 
 .dp__theme_dark {
-  --dp-background-color: var(--bg-main);;
+  --dp-background-color: rgba(24, 24, 28, 1);;
   --dp-text-color: #fff;
-  --dp-hover-color: rgba(20, 20, 20, 1);
-  --dp-hover-text-color: #fff;
-  --dp-hover-icon-color: #959595;
-  --dp-primary-color: rgba(20, 20, 20, 1);
-  --dp-primary-disabled-color: rgba(20, 20, 20, 1);
-  --dp-primary-text-color: #fff;
+  --dp-hover-color: #FFAB70; // date item hover
+  --dp-hover-text-color: rgba(24, 24, 28, 1); // date item color
+  --dp-hover-icon-color: #FFAB70;
+  --dp-primary-color: #FFAB70; // selected date bg and border
+  --dp-primary-disabled-color: #444444;
+  --dp-primary-text-color: rgba(24, 24, 28, 1);;
   --dp-secondary-color: #444444;
-  --dp-border-color: var(--bg-main);
-  --dp-menu-border-color: var(--bg-main);
-  --dp-border-color-hover: var(--bg-main);
-  --dp-border-color-focus: var(--bg-main);
-  --dp-disabled-color: var(--bg-main);
+  --dp-border-color: rgba(24, 24, 28, 1);
+  --dp-menu-border-color: rgba(24, 24, 28, 1);
+  --dp-border-color-hover: rgba(24, 24, 28, 1);
+  --dp-border-color-focus: rgba(24, 24, 28, 1);
+  --dp-disabled-color: rgba(24, 24, 28, 1);
   --dp-disabled-color-text: var(--gray30);
   --dp-scroll-bar-background: #212121;
   --dp-scroll-bar-color: var(--gray30);
@@ -23,9 +23,9 @@
   --dp-icon-color: #959595;
   --dp-danger-color: #e53935;
   --dp-marker-color: #e53935;
-  --dp-tooltip-color: rgba(20, 20, 20, 1);
-  --dp-highlight-color: rgba(20, 20, 20, 1);
-  --dp-range-between-dates-background-color: rgba(20, 20, 20, 1);
+  --dp-tooltip-color: #444444;
+  --dp-highlight-color: #444444;
+  --dp-range-between-dates-background-color: #444444;
   --dp-range-between-dates-text-color: var(--dp-hover-text-color, #fff);
   --dp-range-between-border-color: var(--dp-hover-color, #fff);
 
@@ -78,8 +78,16 @@
   min-height: 32px;
   cursor: pointer;
   text-wrap: nowrap;
-  border-radius: var(--rounding-200);
-  background: rgba(20, 20, 20, 1);
-  color: rgba(235, 235, 245, .6);
+  color: #FFAB70;
+}
+
+.title-and_picker {
+  @include flex-column;
+  @include flex-centered;
+  width: 360px;
+  overflow: hidden;
+  border-radius: var(--rounding-300);
+  background: rgba(24, 24, 28, 1);
+  margin-bottom: 16px;
 }
 

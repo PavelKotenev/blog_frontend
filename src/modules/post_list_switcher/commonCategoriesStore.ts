@@ -25,7 +25,6 @@ export const useCommonCategoriesStore
             );
 
             const response = await ClientController.countPostsByCategories(request);
-
             postsByCategoriesStore.getCategoryData(SearchCategories.Id).total = response.totalByIds;
             postsByCategoriesStore.getCategoryData(SearchCategories.Tag).total = response.totalByTags;
             postsByCategoriesStore.getCategoryData(SearchCategories.Content).total = response.totalByContents;

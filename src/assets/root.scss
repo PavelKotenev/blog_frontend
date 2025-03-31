@@ -4,7 +4,7 @@
 }
 
 :root {
-  --bg-main: #000;
+  --bg-main: rgba(18, 18, 18, 1);
   --gray0: rgb(10, 11, 13);
   --gray5: rgb(20, 21, 25);
   --gray10: rgb(30, 32, 37);
@@ -18,13 +18,6 @@
   --gray80: rgb(193, 198, 207);
   --gray90: rgb(224, 226, 231);
   --gray100: rgb(255, 255, 255);
-
-  --lb-marketing-color-border-divider: hsla(256,2%,99%,.11);
-  --lb-marketing-color-text-subtler: #8e8d91;
-  --lb-product-color-text-accent-yellow: #f0c000;
-  --lb-marketing-color-background-surface-faded: hsla(256,2%,99%,.11);
-  --lb-marketing-color-background-surface-faded-subtle: rgba(140, 140, 143, 0.08);
-  --lb-marketing-color-text-accent-green: #6cefce;
 
   --rounding-0: 0px;
   --rounding-100: 4px;

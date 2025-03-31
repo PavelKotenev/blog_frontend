@@ -44,15 +44,21 @@ export const usePostsByCategoryStore = defineStore("posts_by_category_store", ()
 
     const getCategoryData = (category: SearchCategories): CategoryData => categories[category];
 
-    const actionAfterFiltration = async (): Promise<void> => {
-        dumpDataAfterFiltration();
+    const dumpAllSearchParams = async (): Promise<void> => {
+
+    };
+
+    const actionAfterFiltration = async (fromSearchTerm: boolean): Promise<void> => {
+        dumpDataAfterFiltration(fromSearchTerm);
         await commonCategoriesStore.getPostsAccountByCategory()
-        await fetchPostsByCategory();
+        await fetchPostsByCategory(currentCategory.value);
     }
 
-    const fetchPostsByCategory = async () => {
-        let category = currentCategory.value;
+    const fetchPostsByCategory = async (category: SearchCategories) => {
         const categoryData = getCategoryData(category);
+        if (!searchConditionsStore.searchTermValidity && searchConditionsStore.searchTerm != '') {
+            return;
+        }
 
         const request = new PostsByCategoryRequest(
             category,
@@ -63,6 +69,7 @@ export const usePostsByCategoryStore = defineStore("posts_by_category_store", ()
             categoryData.lastPostCreatedAt,
             tagPickerStore.selectedTagsIds
         );
+
         try {
             const response = await ClientController.getPostsByCategory(request);
 
@@ -80,16 +87,26 @@ export const usePostsByCategoryStore = defineStore("posts_by_category_store", ()
         }
     };
 
-
-    const dumpDataAfterFiltration = () => {
+    const clearFilters = () => {
+      
+    }
+    
+    const dumpDataAfterFiltration = (fromSearchTerm: boolean) => {
         Object.keys(categories).forEach((category) => {
-            const categoryData = categories[parseInt(category) as SearchCategories];
+            const categoryKey = parseInt(category) as SearchCategories;
+            const categoryData = categories[categoryKey];
+
+            if (fromSearchTerm && categoryKey === SearchCategories.Default) {
+                return;
+            }
+
             categoryData.lastPostId = null;
             categoryData.lastPostCreatedAt = null;
             categoryData.total = 0;
             categoryData.posts = [];
         });
     };
+
 
     const defineLastPostParams = (category: SearchCategories) => {
         const categoryData = getCategoryData(category);
@@ -124,20 +141,22 @@ export const usePostsByCategoryStore = defineStore("posts_by_category_store", ()
             currentCategory.value = newCategory;
             const categoryData = categories[newCategory];
             if (categoryData.posts.length === 0) {
-                await fetchPostsByCategory();
+                await fetchPostsByCategory(currentCategory.value);
             }
         }
-    }, { immediate: true });
+    }, {immediate: true});
 
-    watch(() => categories[currentCategory.value].total, (newTotal) => {
+    watch(() => getCategoryData(currentCategory.value).total, (newTotal) => {
         if (newTotal === 0 && currentCategory.value !== SearchCategories.Default) {
             router.push(RoutesList.Default);
         }
     });
 
+
     return {
         categories,
         currentCategory,
+        dumpAllSearchParams,
         actionAfterFiltration,
         dumpDataAfterFiltration,
         fetchPostsByCategory,

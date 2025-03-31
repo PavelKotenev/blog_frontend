@@ -9,34 +9,44 @@
 </template>
 
 <script setup lang="ts">
-import {computed, type ComputedRef, onMounted, ref} from 'vue';
-import {CategoryData, usePostsByCategoryStore} from "@/modules/posts_by_category/postsByCategoryStore";
+import { computed, type ComputedRef, onMounted, ref, watch, nextTick } from 'vue';
+import { CategoryData, usePostsByCategoryStore } from "@/modules/posts_by_category/postsByCategoryStore";
 import Post from '@/modules/post/Post.vue';
 
 const postsByCategoryStore = usePostsByCategoryStore();
-
 const categoryData = computed(() => postsByCategoryStore.getCategoryData(postsByCategoryStore.currentCategory)) as ComputedRef<CategoryData>;
 
 const anchor = ref<HTMLDivElement | null>(null);
 const observer = ref<IntersectionObserver | null>(null);
 
-const onAnchorIntersect = (entries: IntersectionObserverEntry[]) => {
-  const entry = entries[0];
-  if (entry.isIntersecting && categoryData.value.total >= 20) {
-    postsByCategoryStore.fetchPostsByCategory();
+const createObserver = () => {
+  if (observer.value) {
+    observer.value.disconnect();
+  }
+
+  if (anchor.value) {
+    observer.value = new IntersectionObserver(entries => {
+      const entry = entries[0];
+      if (entry.isIntersecting && categoryData.value.total >= 20) {
+        postsByCategoryStore.fetchPostsByCategory(postsByCategoryStore.currentCategory);
+      }
+    }, {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1,
+    });
+
+    observer.value.observe(anchor.value);
   }
 };
 
-onMounted(async () => {
-  setTimeout(() => {
-    if (anchor.value) {
-      observer.value = new IntersectionObserver(onAnchorIntersect, {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1,
-      });
-      observer.value.observe(anchor.value);
-    }
-  }, 1000);
+onMounted(() => {
+  setTimeout(createObserver, 300);
 });
+
+watch(categoryData, async () => {
+  await nextTick();
+  createObserver();
+});
+
 </script>

@@ -2,18 +2,21 @@
 
 .h-dropdown {
   @include flex-column;
+  margin-top: 15vh;
   justify-content: flex-start;
   align-items: center;
   transform: translateX(-50%);
   background: var(--bg-main);
+  border-bottom: 2px solid #161618;
   z-index: 1000;
   overflow-y: scroll;
   overflow-x: hidden;
   position: absolute;
   padding-top: 18px;
   top: 0;
-  width: 430px;
+  width: 100%;
   left: 50%;
+  height: 85vh;
 
   &::-webkit-scrollbar {
     display: none;
@@ -30,3 +33,4 @@
   font-size: 1.1rem;
   padding: 0 16px;
 }
+

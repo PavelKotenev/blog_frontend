@@ -54,7 +54,7 @@ export const useTagPickerStore = defineStore("tag_picker_store", () => {
         selectedTagsIds.value = selectedTagsIds.value.filter((tagId) => typeof tagId === 'number');
 
         await getTagsForPicker();
-        await postsByCategoryStore.actionAfterFiltration();
+        await postsByCategoryStore.actionAfterFiltration(false);
     };
 
     return {

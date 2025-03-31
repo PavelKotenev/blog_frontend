@@ -6,7 +6,7 @@
   flex-wrap: wrap;
   align-content: flex-start;
   gap: 8px;
-  padding: 0 24px;
+  padding: 12px 24px;
   height: 180px;
   overflow-x: hidden;
   overflow-y: scroll;
@@ -24,24 +24,27 @@
   height: 32px;
 }
 
+.tags-picker{
+  border-radius: var(--rounding-300);
+  background: rgba(24, 24, 28, 1);
+  margin-bottom: 16px;
+}
+
 .tp-tag-btn {
   border-radius: var(--rounding-200);
-  background: rgba(20, 20, 20, 1);
-  color: rgba(235, 235, 245, .6);
+  color: #75b6e7;
   cursor: pointer;
   transition: background 0.2s ease;
-  padding: 6px 12px;
-  font-weight: 300;
+  padding: 4px;
+  font-weight: 400;
 }
 
 .tp-tag-btn.selected {
-  font-weight: 500;
-  color: var(--bg-main);
-  background: white;
+  font-weight: 400;
+  color: #FFAB70;
 }
 
 .tp-tag-btn:hover {
-  font-weight: 500;
-  color: var(--bg-main);
-  background: white;
+  color: #FFAB70;
+  font-weight: 400;
 }

@@ -10,7 +10,7 @@ export const useDatePickerStore = defineStore("date_picker_store", () => {
     watch(
         [fromCreatedAt, toCreatedAt],
         async () => {
-            await postsByCategoryStore.actionAfterFiltration();
+            await postsByCategoryStore.actionAfterFiltration(false);
         },
         {deep: true}
     );
@@ -22,7 +22,6 @@ export const useDatePickerStore = defineStore("date_picker_store", () => {
         toCreatedAt.value = null;
     }
     const toggleFromCreatedAt = async (data: any): Promise<void> => {
-        console.log(data)
         fromCreatedAt.value = data;
     };
     const toggleToCreatedAt = async (data: any): Promise<void> => {
@@ -35,8 +34,6 @@ export const useDatePickerStore = defineStore("date_picker_store", () => {
             day: '2-digit',
             month: 'short',
             year: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit',
             hour12: false,
         };
         const formattedDate = date.toLocaleDateString('en-GB', options);

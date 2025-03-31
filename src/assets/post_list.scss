@@ -3,21 +3,20 @@
 .p-list-box {
   display: grid;
   align-items: start;
-  grid-template-columns: repeat(auto-fill, 430px);
+  grid-template-columns: repeat(auto-fill, 410px);
   grid-auto-rows: min-content;
   justify-content: center;
-  gap: 16px;
+  gap: 12px;
   width: 100vw;
   scroll-behavior: smooth;
   overflow: scroll;
-  padding: 16px 8px 0;
+
+  max-width: calc(3 * 410px + 2 * 12px);
+  margin: 16px auto 0;
 
   &::-webkit-scrollbar {
     display: none;
   }
-}
-.anchor {
-  height: 1px;
 }
 
 .p-list-total {

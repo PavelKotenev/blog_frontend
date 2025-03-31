@@ -1,29 +1,53 @@
 @use "mixins" as *;
 
 .s-categories-btns-wrapper {
-  @include flex-row;
-  @include flex-centered;
-  gap: 16px;
-  width: 430px;
-  padding: 0 8px;
-}
-
-.s-category-btn {
-  color: rgba(220, 220, 220, 1);
   @include flex-column;
   @include flex-centered;
-  border-radius: var(--rounding-pill);
+  width: 360px;
+  padding: 16px;
+
+  margin-bottom: 12px;
+}
+
+.category-title-total {
+  @include flex-row;
+  @include flex-centered;
+  font-weight: 400;
+  gap: 16px;
+}
+
+.category-select-svg-limiter{
+  width: 12px;
+  height: 12px;
+}
+
+.category-switcher{
+  @include flex-column;
+  border-radius: var(--rounding-300);
+  background: #161618;
+  margin-bottom: 16px;
+}
+
+.s-category {
+  color: #dfdfd6;
+  @include flex-row;
+  align-items: center;
+  justify-content: space-between;
   height: min-content;
   cursor: pointer;
-  padding: 6px 16px;
-  font-weight: 500;
+  width: 100%;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  font-weight: 400;
   font-size: 0.9rem;
 
   &.active {
-    background-color: rgba(16, 16, 16, 1);
+    color: #FFAB70;
+    font-weight: 400;
   }
 
   &.disabled {
-    color: rgba(86, 86, 86, 1);
+    font-weight: 400;
+    color: rgba(235, 235, 245, .6);
   }
 }
